@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
 
-<title>组件模式 &middot; Decoupling Patterns &middot; 游戏设计模式</title>
+<title>組件模式 &middot; Decoupling Patterns &middot; 遊戲設計模式</title>
 
 <!-- Tell mobile browsers we're optimized for them and they don't need to crop
      the viewport. -->
@@ -25,37 +25,37 @@ delete the font style for english.
 <nav class="top">
   <span class="prev">&larr; <a href="decoupling-patterns.html">上一章</a></span>
   <span class="next"><a href="event-queue.html">下一章</a> &rarr;</span>
-  <span class="toc">&equiv; <a href="/">首页</a></span>
+  <span class="toc">&equiv; <a href="/">首頁</a></span>
 </nav>
-<h1>组件模式</h1>
-<h1 class="book"><a href="/">游戏设计模式</a><span class="section"><a href="decoupling-patterns.html">Decoupling Patterns</a></span></h1>
-<h2><a href="#意图" name="意图">意图</a></h2>
-<p><em>允许单一的实体跨越多个领域而不会导致这些领域彼此耦合。</em></p>
-<h2><a href="#动机" name="动机">动机</a></h2>
+<h1>組件模式</h1>
+<h1 class="book"><a href="/">遊戲設計模式</a><span class="section"><a href="decoupling-patterns.html">Decoupling Patterns</a></span></h1>
+<h2><a href="#意圖" name="意圖">意圖</a></h2>
+<p><em>允許單一的實體跨越多個領域而不會導致這些領域彼此耦合。</em></p>
+<h2><a href="#動機" name="動機">動機</a></h2>
 <p><span name="baker"></span></p>
-<p>让我们假设我们正构建平台跳跃游戏。
-意大利水管工已经有人做了，因此我们将出动丹麦面包师，Bj?rn。
-照理说，会有一个类来表示友好的糕点厨师，包含他在比赛中做的一切。</p>
+<p>讓我們假設我們正構建平台跳躍遊戲。
+意大利水管工已經有人做了，因此我們將出動丹麥麵包師，Bj?rn。
+照理說，會有一個類來表示友好的糕點廚師，包含他在比賽中做的一切。</p>
 <aside name="baker">
-<p>像这样的游戏创意导致了我是程序员而不是设计师。</p>
+<p>像這樣的遊戲創意導致了我是程序員而不是設計師。</p>
 </aside>
-<p>由于玩家控制他，这意味着需要读取控制器的输入然后转化为动作。
-而且，当然，他需要与关卡相互作用，所以要引入物理和碰撞。
-一旦这样做了，他必须在屏幕上出现，所以要引入动画和渲染。
-他可能还会播放一些声音。</p>
-<p>等一下，这在失控。软件体系结构101课程告诉我们，程序的不同领域应保持分离。
-如果我们做一个文字处理器，处理打印的代码不应该受加载和保存文件的代码影响。
-游戏和企业应用程序的领域不尽相同，但该规则仍然适用。</p>
-<p>我们希望AI，物理，渲染，声音和其他领域域尽可能相互不了解，
-但现在我们将所有这一切挤在一个类中。
-我们已经看到了这条路通往何处：5000行的巨大代码文件，哪怕是你们团队中最勇敢的程序员也不敢打开。</p>
-<p>这工作对能驯服他的少数人是有趣的，但对其他人是地狱。
-这么大的类意味着，即使是看似微不足道的变化亦可有深远的影响。
-很快，为类添加<em>错误</em>的速度明显快于添加<em>功能</em>的速度。</p>
-<h3><a href="#快刀斩乱麻" name="快刀斩乱麻">快刀斩乱麻</a></h3>
+<p>由於玩家控制他，這意味著需要讀取控製器的輸入然後轉化為動作。
+而且，當然，他需要與關卡相互作用，所以要引入物理和碰撞。
+一旦這樣做了，他必須在屏幕上出現，所以要引入動畫和渲染。
+他可能還會播放一些聲音。</p>
+<p>等一下，這在失控。軟件體繫結構101課程告訴我們，程序的不同領域應保持分離。
+如果我們做一個文字處理器，處理打印的代碼不應該受加載和保存檔案的代碼影響。
+遊戲和企業應用程序的領域不盡相同，但該規則仍然適用。</p>
+<p>我們希望AI，物理，渲染，聲音和其他領域域儘可能相互不瞭解，
+但現在我們將所有這一切擠在一個類中。
+我們已經看到了這條路通往何處：5000行的巨大代碼檔案，哪怕是你們團隊中最勇敢的程序員也不敢打開。</p>
+<p>這工作對能馴服他的少數人是有趣的，但對其他人是地獄。
+這麼大的類意味著，即使是看似微不足道的變化亦可有深遠的影響。
+很快，為類添加<em>錯誤</em>的速度明顯快于添加<em>功能</em>的速度。</p>
+<h3><a href="#快刀斬亂麻" name="快刀斬亂麻">快刀斬亂麻</a></h3>
 <p><span name="coupling"></span></p>
-<p>比起单纯的规模问题，更糟糕的是耦合。
-在游戏中所有不同的系统被绑成了一个巨大的代码球：</p>
+<p>比起單純的規模問題，更糟糕的是耦合。
+在遊戲中所有不同的系統被綁成了一個巨大的代碼球：</p>
 <div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">collidingWithFloor</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">getRenderState</span><span class="p">()</span> <span class="o">!=</span> <span class="n">INVISIBLE</span><span class="p">))</span>
 <span class="p">{</span>
   <span class="n">playSound</span><span class="p">(</span><span class="n">HIT_FLOOR</span><span class="p">);</span>
@@ -63,143 +63,143 @@ delete the font style for english.
 </pre></div>
 
 
-<p>任何试图改变上面代码的程序员，都需要物理，图形和声音的相关知识，以确保没破坏什么。</p>
+<p>任何試圖改變上面代碼的程序員，都需要物理，圖形和聲音的相關知識，以確保沒破壞什麼。</p>
 <aside name="coupling">
-<p>这样的耦合在<em>任何</em>游戏中出现都是个问题，但是在使用并发的现代游戏中尤其糟糕。
-在多核硬件上，让代码同时在多个线程上运行是至关重要的。
-将游戏分割到线程的一种通用方法是通过领域划分——在一个核上运行AI代码，在另一个上播放声音，在第三个上渲染，等等。</p>
-<p>一旦你这么做了，在领域间保持解耦就是至关重要的，这是为了避免死锁或者其他恶魔般的并发问题。
-如果某个函数从一个线程上调用<code>UpdateSounds()</code>方法，从另一个线程上调用<code>RenderGraphics()</code>方法，那它是在自找麻烦。</p>
+<p>這樣的耦合在<em>任何</em>遊戲中出現都是個問題，但是在使用並發的現代遊戲中尤其糟糕。
+在多核硬件上，讓代碼同時在多個線程上運行是至關重要的。
+將遊戲分割到線程的一種通用方法是通過領域劃分——在一個核上運行AI代碼，在另一個上播放聲音，在第三個上渲染，等等。</p>
+<p>一旦你這麼做了，在領域間保持解耦就是至關重要的，這是為了避免死鎖或者其他惡魔般的並發問題。
+如果某個函數從一個線程上調用<code>UpdateSounds()</code>方法，從另一個線程上調用<code>RenderGraphics()</code>方法，那它是在自找麻煩。</p>
 </aside>
-<p>这两个问题互相混合;这个类涉及太多的域，每个程序员都得接触它，
-但它又太过巨大，这就变成了一场噩梦。
-如果变得够糟糕，程序员会黑入代码库的其他部分，仅仅为了躲开这个像毛球一样的<code>Bjorn</code>类。</p>
-<h3><a href="#快刀斩乱麻" name="快刀斩乱麻">快刀斩乱麻</a></h3>
-<p>我们可以像亚历山大大帝一样解决这个问题——快刀斩乱麻。
-按领域将<code>Bjorn</code>类切片成相互独立的部分。
-例如，我们抽出所有处理用户输入的代码，将其移动到一个单独的<code>InputComponent</code>类。
-<code>Bjorn</code>拥有这个部件的一个实例。我们将对<code>Bjorn</code>接触的每个领域重复这一过程。</p>
-<p>当完成后，我们将<code>Bjorn</code>大多数的东西都抽走了。
-剩下的是一个薄壳包着所有的组件。
-通过将类划分为多个小类，我们已经解决了这个问题。但我们完成了远远不止这些。</p>
-<h3><a href="#宽松的结果" name="宽松的结果">宽松的结果</a></h3>
-<p>我们的组件类现在解耦了。
-尽管<code>Bjorn</code>有<code>PhysicsComponent</code>和<code>GraphicsComponent</code>，
-但这两部分都不知道对方的存在。
-这意味着处理物理的人可以修改组件而不需要了解图形，反之亦然。</p>
-<p>在实践中，这些部件需要在它们之间有<em>一些</em>相互作用。
-例如，AI组件可能需要告诉物理组件Bj?rn试图去哪里。
-然而，我们可以限制这种交互在<em>确实</em>需要交互的组件之间，
-而不是把它们围在同一个围栏里。</p>
-<h3><a href="#绑到一起" name="绑到一起">绑到一起</a></h3>
+<p>這兩個問題互相混合;這個類涉及太多的域，每個程序員都得接觸它，
+但它又太過巨大，這就變成了一場噩夢。
+如果變得夠糟糕，程序員會黑入代碼庫的其他部分，僅僅為了躲開這個像毛球一樣的<code>Bjorn</code>類。</p>
+<h3><a href="#快刀斬亂麻" name="快刀斬亂麻">快刀斬亂麻</a></h3>
+<p>我們可以像亞歷山大大帝一樣解決這個問題——快刀斬亂麻。
+按領域將<code>Bjorn</code>類切片成相互獨立的部分。
+例如，我們抽出所有處理用戶輸入的代碼，將其移動到一個單獨的<code>InputComponent</code>類。
+<code>Bjorn</code>擁有這個部件的一個實例。我們將對<code>Bjorn</code>接觸的每個領域重複這一過程。</p>
+<p>當完成後，我們將<code>Bjorn</code>大多數的東西都抽走了。
+剩下的是一個薄殻包著所有的組件。
+通過將類劃分為多個小類，我們已經解決了這個問題。但我們完成了遠遠不止這些。</p>
+<h3><a href="#寬鬆的結果" name="寬鬆的結果">寬鬆的結果</a></h3>
+<p>我們的組件類現在解耦了。
+儘管<code>Bjorn</code>有<code>PhysicsComponent</code>和<code>GraphicsComponent</code>，
+但這兩部分都不知道對方的存在。
+這意味著處理物理的人可以修改組件而不需要瞭解圖形，反之亦然。</p>
+<p>在實踐中，這些部件需要在它們之間有<em>一些</em>相互作用。
+例如，AI組件可能需要告訴物理組件Bj?rn試圖去哪裡。
+然而，我們可以限制這種交互在<em>確實</em>需要交互的組件之間，
+而不是把它們圍在同一個圍欄裡。</p>
+<h3><a href="#綁到一起" name="綁到一起">綁到一起</a></h3>
 <p><span name="inheritance"></span></p>
-<p>这种设计的另一特性是，组件现在是可复用的包。
-到目前为止，我们专注于面包师，但是让我们考虑几个游戏世界中其他类型的对象。
-<em>装饰</em> 是玩家看到但不能交互的事物：灌木，杂物等视觉细节。
-<em>道具</em> 像<em>装饰</em>，但可以交互：箱，巨石，树木。
-<em>区域</em> 与装饰相反——无形但可互动。
-它们是很好的触发器，比如在Bj?rn进入区域时触发过场动画。</p>
+<p>這種設計的另一特性是，組件現在是可復用的包。
+到目前為止，我們專注于麵包師，但是讓我們考慮幾個遊戲世界中其他類型的對象。
+<em>裝飾</em> 是玩家看到但不能交互的事物：灌木，雜物等視覺細節。
+<em>道具</em> 像<em>裝飾</em>，但可以交互：箱，巨石，樹木。
+<em>區域</em> 與裝飾相反——無形但可互動。
+它們是很好的觸發器，比如在Bj?rn進入區域時觸發過場動畫。</p>
 <aside name="inheritance">
-<p>当面向对象语言第一次接触这个场景时，继承是它箱子里最闪耀的工具。
-它被认为是代码无限重用之锤，编程者常常挥舞着它。
-然而我们痛苦地学到，事实上它是一把重锤。
-继承有它的用处，但对简单的代码重用太过复杂。</p>
-<p>相反，在今日软件设计的趋势是尽可能使用组件代替继承。
-不是让两个类<em>继承</em>同一类来分享代码，而是让它们<em>拥有同一个类的实例</em>。</p>
+<p>當面向對象語言第一次接觸這個場景時，繼承是它箱子裡最閃耀的工具。
+它被認為是代碼無限重用之錘，編程者常常揮舞著它。
+然而我們痛苦地學到，事實上它是一把重鎚。
+繼承有它的用處，但對簡單的代碼重用太過複雜。</p>
+<p>相反，在今日軟件設計的趨勢是儘可能使用組件代替繼承。
+不是讓兩個類<em>繼承</em>同一類來分享代碼，而是讓它們<em>擁有同一個類的實例</em>。</p>
 </aside>
-<p>现在，考虑如果不用组件，我们将如何建立这些类的继承层次。第一遍可能是这样的：</p>
-<p><img src="images/component-uml.png" alt="类的层次图。区域有碰撞检测代码并继承游戏对象。装饰也继承游戏对象而且有渲染代码。道具继承区域，但是有了多余的渲染代码。" /></p>
+<p>現在，考慮如果不用組件，我們將如何建立這些類的繼承層次。第一遍可能是這樣的：</p>
+<p><img src="images/component-uml.png" alt="類的層次圖。區域有碰撞檢測代碼並繼承遊戲對象。裝飾也繼承遊戲對象而且有渲染代碼。道具繼承區域，但是有了多餘的渲染代碼。" /></p>
 <p><span name="diamond"></span></p>
-<p>我们有<code>GameObject</code>基类，包含位置和方向之类的通用部分。
-<code>Zone</code>继承它，增加了碰撞检测。
-同样，<code>Decoration</code>继承<code>GameObject</code>，并增加了渲染。
-<code>Prop</code>继承<code>Zone</code>，因此它可以重用碰撞代码。
-然而，<code>Prop</code>不能<em>同时</em>继承<code>Decoration</code>来重用<em>渲染</em>，
-否则就会造成致命菱形结构。</p>
+<p>我們有<code>GameObject</code>基類，包含位置和方向之類的通用部分。
+<code>Zone</code>繼承它，增加了碰撞檢測。
+同樣，<code>Decoration</code>繼承<code>GameObject</code>，並增加了渲染。
+<code>Prop</code>繼承<code>Zone</code>，因此它可以重用碰撞代碼。
+然而，<code>Prop</code>不能<em>同時</em>繼承<code>Decoration</code>來重用<em>渲染</em>，
+否則就會造成致命菱形結構。</p>
 <aside name="diamond">
-<p>“致命菱形”发生在类继承了多个类，而这多个类中有两个继承同一基类时。
-介绍它造成的痛苦超过了本书的范围，但它被称为“致命”是有原因的。</p>
+<p>“致命菱形”發生在類繼承了多個類，而這多個類中有兩個繼承同一基類時。
+介紹它造成的痛苦超過了本書的範圍，但它被稱為“致命”是有原因的。</p>
 </aside>
-<p>我们可以反过来让<code>Prop</code>继承<code>Decoration</code>，但随后不得不重复<em>碰撞检测</em>代码。
-无论哪种方式，没有干净的方式重用碰撞和渲染代码而不诉诸多重继承。
-唯一的其他选择是一切都继承<code>GameObject</code>，
-但随后<code>Zone</code>会浪费内存在并不需要的渲染数据上，
-<code>Decoration</code>在物理效果上有同样的浪费。</p>
+<p>我們可以反過來讓<code>Prop</code>繼承<code>Decoration</code>，但隨後不得不重複<em>碰撞檢測</em>代碼。
+無論哪種方式，沒有乾淨的方式重用碰撞和渲染代碼而不訴諸多重繼承。
+唯一的其他選擇是一切都繼承<code>GameObject</code>，
+但隨後<code>Zone</code>會浪費內存在並不需要的渲染數據上，
+<code>Decoration</code>在物理效果上有同樣的浪費。</p>
 <p><span name="menu"></span></p>
-<p>现在，让我们尝试用组件。子类将彻底消失。
-取而代之的是一个<code>GameObject</code>类和两个组件类：<code>PhysicsComponent</code>和<code>GraphicsComponent</code>。
-装饰是个简单的<code>GameObject</code>，包含<code>GraphicsComponent</code>但没有<code>PhysicsComponent</code>。
-区域与其恰好相反，而道具包含两种组件。
-没有代码重复，没有多重继承，只有三个类，而不是四个。</p>
+<p>現在，讓我們嘗試用組件。子類將徹底消失。
+取而代之的是一個<code>GameObject</code>類和兩個組件類：<code>PhysicsComponent</code>和<code>GraphicsComponent</code>。
+裝飾是個簡單的<code>GameObject</code>，包含<code>GraphicsComponent</code>但沒有<code>PhysicsComponent</code>。
+區域與其恰好相反，而道具包含兩種組件。
+沒有代碼重複，沒有多重繼承，只有三個類，而不是四個。</p>
 <aside name="menu">
-<p>可以拿饭店菜单打比方。如果每个实体是一个类，那就只能订套餐。
-我们需要为每种<em>可能</em>的组合定义各自的类。
-为了满足每位用户，我们需要十几种套餐。</p>
-<p>组件是照单点菜——每位顾客都可以选他们想要的，菜单记录可选的菜式。</p>
+<p>可以拿飯店菜單打比方。如果每個實體是一個類，那就只能訂套餐。
+我們需要為每種<em>可能</em>的組合定義各自的類。
+為了滿足每位用戶，我們需要十幾種套餐。</p>
+<p>組件是照單點菜——每位顧客都可以選他們想要的，菜單記錄可選的菜式。</p>
 </aside>
-<p>对对象而言，组件是即插即用的。
-将不同的可重用部件插入对象，我们就能构建复杂具有丰富的行为实体。
-就像软件中的战神金刚。</p>
+<p>對對象而言，組件是即插即用的。
+將不同的可重用部件插入對象，我們就能構建複雜具有豐富的行為實體。
+就像軟件中的戰神金剛。</p>
 <h2><a href="#模式" name="模式">模式</a></h2>
 <p><span name="component"></span></p>
-<p><strong>单一实体跨越了多个领域</strong>。为了保持领域之间相互分离，将每部分代码放入<strong>各自的组件类</strong>中。
-实体被简化为<em>组件的容器</em>。</p>
+<p><strong>單一實體跨越了多個領域</strong>。為了保持領域之間相互分離，將每部分代碼放入<strong>各自的組件類</strong>中。
+實體被簡化為<em>組件的容器</em>。</p>
 <aside name="component">
-<p>“组件”，就像“对象”，在编程中意味任何东西也不意味任何东西。
-正因如此，它被用来描述一些概念。
-在商业软件中，“组件”设计模式描述通过网络解耦的服务。</p>
-<p>我试图从游戏中找到无关这个设计模式的另一个名字，但“组件”看来是最常用的术语。
-由于设计模式是关于记录已存的实践，我没有创建新术语的余地。
-所以，跟着XNA，Delta3D和其他人的脚步，我称之为“组件”。</p>
+<p>“組件”，就像“對象”，在編程中意味任何東西也不意味任何東西。
+正因如此，它被用來描述一些概念。
+在商業軟件中，“組件”設計模式描述通過網絡解耦的服務。</p>
+<p>我試圖從遊戲中找到無關這個設計模式的另一個名字，但“組件”看來是最常用的術語。
+由於設計模式是關於記錄已存的實踐，我沒有創建新術語的餘地。
+所以，跟著XNA，Delta3D和其他人的腳步，我稱之為“組件”。</p>
 </aside>
-<h2><a href="#何时使用" name="何时使用">何时使用</a></h2>
-<p>组件通常在定义游戏实体的核心部分中使用，但它们在其他地方也有用。
-这个模式在如下情况中可以使用：</p>
+<h2><a href="#何時使用" name="何時使用">何時使用</a></h2>
+<p>組件通常在定義遊戲實體的核心部分中使用，但它們在其他地方也有用。
+這個模式在如下情況中可以使用：</p>
 <ul>
 <li>
-<p>有一个涉及了多个领域的类，而你想保持这些领域互相隔离。</p>
+<p>有一個涉及了多個領域的類，而你想保持這些領域互相隔離。</p>
 </li>
 <li>
-<p>一个类正在变大而且越来越难以使用。</p>
+<p>一個類正在變大而且越來越難以使用。</p>
 </li>
 <li>
-<p>想要能定义一系列分享不同能力的类，但是使用继承无法让你精确选取要重用的部分。</p>
+<p>想要能定義一系列分享不同能力的類，但是使用繼承無法讓你精確選取要重用的部分。</p>
 </li>
 </ul>
-<h2><a href="#记住" name="记住">记住</a></h2>
-<p>组件模式比简单地向类中添加代码增加了一点点复杂性。
-每个概念上的“对象”要组成真正对象需要实例化，初始化，然后正确的连接。
-不同组件间沟通会有些困难，而控制它们如何使用内存就更加复杂。</p>
-<p>对于大型代码库，为了解耦和重用而付出这样的复杂度是值得的。
-但是在使用这种模式之前，保证你没有为了不存在的问题而“过度设计”。</p>
+<h2><a href="#記住" name="記住">記住</a></h2>
+<p>組件模式比簡單地向類中添加代碼增加了一點點複雜性。
+每個概念上的“對象”要組成真正對象需要實例化，初始化，然後正確的連接。
+不同組件間溝通會有些困難，而控制它們如何使用內存就更加複雜。</p>
+<p>對於大型代碼庫，為瞭解耦和重用而付出這樣的複雜度是值得的。
+但是在使用這種模式之前，保證你沒有為了不存在的問題而“過度設計”。</p>
 <p><span name="perf"></span></p>
-<p>使用组件的另一后果是，需要多一层跳转才能做要做的事。
-拿到容器对象，获得相应的组件，<em>然后</em> 你才能做想做的事情。
-在性能攸关的内部循环中，这种跳转也许会导致糟糕的性能。</p>
+<p>使用組件的另一後果是，需要多一層跳轉才能做要做的事。
+拿到容器對象，獲得相應的組件，<em>然後</em> 你才能做想做的事情。
+在性能攸關的內部循環中，這種跳轉也許會導致糟糕的性能。</p>
 <aside name="perf">
-<p>这是硬币的两面。组件模式通常可以<em>增进</em>性能和缓存一致性。
-组件让使用<a class="pattern" href="data-locality.html">数据局部性</a>模式的CPU更容易地组织数据。</p>
+<p>這是硬幣的兩面。組件模式通常可以<em>增進</em>性能和緩存一致性。
+組件讓使用<a class="pattern" href="data-locality.html">數據局部性</a>模式的CPU更容易地組織數據。</p>
 </aside>
-<h2><a href="#示例代码" name="示例代码">示例代码</a></h2>
-<p>我写这本书的最大挑战之一就是搞明白如何隔离各个模式。
-许多设计模式包含了不属于这种模式的代码。
-为了将提取模式的本质，我尽可能的消减代码，
-但是在某种程度上，这就像没有衣服还要说明如何整理衣柜。</p>
-<p>说明组件模式尤其困难。
-如果看不到它解耦的各个领域的代码，你就不能获得正确的体会，
-因此我会多写一些有关于Bj?rn的代码。
-这个模式事实上只关于将组件变为<em>类</em>，但类中的代码可以帮助表明类是做什么用的。
-它是伪代码——它调用了其他不存在的类——但这应该可以让你理解我们正在做什么。</p>
-<h3><a href="#单块类" name="单块类">单块类</a></h3>
+<h2><a href="#示例代碼" name="示例代碼">示例代碼</a></h2>
+<p>我寫這本書的最大挑戰之一就是搞明白如何隔離各個模式。
+許多設計模式包含了不屬於這種模式的代碼。
+為了將提取模式的本質，我儘可能的消減代碼，
+但是在某種程度上，這就像沒有衣服還要說明如何整理衣櫃。</p>
+<p>說明組件模式尤其困難。
+如果看不到它解耦的各個領域的代碼，你就不能獲得正確的體會，
+因此我會多寫一些有關於Bj?rn的代碼。
+這個模式事實上只關於將組件變為<em>類</em>，但類中的代碼可以幫助表明類是做什麼用的。
+它是偽代碼——它調用了其他不存在的類——但這應該可以讓你理解我們正在做什麼。</p>
+<h3><a href="#單塊類" name="單塊類">單塊類</a></h3>
 <p><span name="cat"></span></p>
-<p>为了清晰的看到这个模式是如何应用的，
-我们先展示一个<code>Bjorn</code>类，
-它包含了所有我们需要的事物，但是<em>没有</em>使用这个模式：</p>
+<p>為了清晰的看到這個模式是如何應用的，
+我們先展示一個<code>Bjorn</code>類，
+它包含了所有我們需要的事物，但是<em>沒有</em>使用這個模式：</p>
 <aside name="cat">
-<p>我应指出在代码使用角色的名字总是个坏主意。市场部有在发售之前改名字的坏习惯。
-“焦点测试表明，在11岁到15岁的男性不喜欢&lsquo;Bj?rn&rsquo;，请改为&lsquo;Sven&amp;rsquo”。</p>
-<p>这就是为什么很多软件项目使用内部代码名。
-而且比起告诉人们你在完成“Photoshop的下一版本”，告诉他们你在完成“大电猫”更有趣。</p>
+<p>我應指出在代碼使用角色的名字總是個壞主意。市場部有在發售之前改名字的壞習慣。
+“焦點測試表明，在11歲到15歲的男性不喜歡&lsquo;Bj?rn&rsquo;，請改為&lsquo;Sven&amp;rsquo”。</p>
+<p>這就是為什麼很多軟件項目使用內部代碼名。
+而且比起告訴人們你在完成“Photoshop的下一版本”，告訴他們你在完成“大電貓”更有趣。</p>
 </aside>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Bjorn</span>
 <span class="p">{</span>
@@ -226,10 +226,10 @@ delete the font style for english.
 </pre></div>
 
 
-<p><code>Bjorn</code>有个每帧调用的<code>update()</code>方法。</p>
+<p><code>Bjorn</code>有個每幀調用的<code>update()</code>方法。</p>
 <div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">Bjorn</span><span class="o">::</span><span class="n">update</span><span class="p">(</span><span class="n">World</span><span class="o">&amp;</span> <span class="n">world</span><span class="p">,</span> <span class="n">Graphics</span><span class="o">&amp;</span> <span class="n">graphics</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="c1">// 根据用户输入修改英雄的速度</span>
+  <span class="c1">// 根據用戶輸入修改英雄的速度</span>
   <span class="k">switch</span> <span class="p">(</span><span class="n">Controller</span><span class="o">::</span><span class="n">getJoystickDirection</span><span class="p">())</span>
   <span class="p">{</span>
     <span class="k">case</span> <span class="nl">DIR_LEFT</span><span class="p">:</span>
@@ -241,11 +241,11 @@ delete the font style for english.
       <span class="k">break</span><span class="p">;</span>
   <span class="p">}</span>
 
-  <span class="c1">// 根据速度修改位置</span>
+  <span class="c1">// 根據速度修改位置</span>
   <span class="n">x_</span> <span class="o">+=</span> <span class="n">velocity_</span><span class="p">;</span>
   <span class="n">world</span><span class="p">.</span><span class="n">resolveCollision</span><span class="p">(</span><span class="n">volume_</span><span class="p">,</span> <span class="n">x_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">velocity_</span><span class="p">);</span>
 
-  <span class="c1">// 绘制合适的图形</span>
+  <span class="c1">// 繪製合適的圖形</span>
   <span class="n">Sprite</span><span class="o">*</span> <span class="n">sprite</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">spriteStand_</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">velocity_</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
   <span class="p">{</span>
@@ -261,18 +261,18 @@ delete the font style for english.
 </pre></div>
 
 
-<p>它读取操纵杆以确定如何加速面包师。
-然后，用物理引擎解析新位置。
-最后，将Bj?rn渲染至屏幕。</p>
-<p>这里的示例实现平凡而简单。
-没有重力，动画，或任何让人物有趣的其他细节。
-即便如此，我们可以看到，已经出现了同时消耗多个程序员时间的函数，而它开始变得有点混乱。
-想象增加到一千行，你就知道这会有多难受了。</p>
-<h3><a href="#分离领域" name="分离领域">分离领域</a></h3>
-<p>从一个领域开始，将<code>Bjorn</code>的代码去除一部分，归入分离的组件类。
-我们从首个执行的领域开始：输入。
-<code>Bjorn</code>做的头件事就是读取玩家的输入，然后基于此调整它的速度。
-让我们将这部分逻辑移入一个分离的类：</p>
+<p>它讀取操縱桿以確定如何加速麵包師。
+然後，用物理引擎解析新位置。
+最後，將Bj?rn渲染至屏幕。</p>
+<p>這裡的示例實現平凡而簡單。
+沒有重力，動畫，或任何讓人物有趣的其他細節。
+即便如此，我們可以看到，已經出現了同時消耗多個程序員時間的函數，而它開始變得有點混亂。
+想象增加到一千行，你就知道這會有多難受了。</p>
+<h3><a href="#分離領域" name="分離領域">分離領域</a></h3>
+<p>從一個領域開始，將<code>Bjorn</code>的代碼去除一部分，歸入分離的組件類。
+我們從首個執行的領域開始：輸入。
+<code>Bjorn</code>做的頭件事就是讀取玩家的輸入，然後基于此調整它的速度。
+讓我們將這部分邏輯移入一個分離的類：</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">InputComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -296,8 +296,8 @@ delete the font style for english.
 </pre></div>
 
 
-<p>很简单吧。我们将<code>Bjorn</code>的<code>update()</code>的第一部分取出，放入这个类中。
-对<code>Bjorn</code>的改变也很直接：</p>
+<p>很簡單吧。我們將<code>Bjorn</code>的<code>update()</code>的第一部分取出，放入這個類中。
+對<code>Bjorn</code>的改變也很直接：</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Bjorn</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -308,11 +308,11 @@ delete the font style for english.
   <span class="p">{</span>
     <span class="n">input_</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span>
 
-    <span class="c1">// 根据速度修改位置</span>
+    <span class="c1">// 根據速度修改位置</span>
     <span class="n">x</span> <span class="o">+=</span> <span class="n">velocity</span><span class="p">;</span>
     <span class="n">world</span><span class="p">.</span><span class="n">resolveCollision</span><span class="p">(</span><span class="n">volume_</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">velocity</span><span class="p">);</span>
 
-    <span class="c1">// 绘制合适的图形</span>
+    <span class="c1">// 繪製合適的圖形</span>
     <span class="n">Sprite</span><span class="o">*</span> <span class="n">sprite</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">spriteStand_</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">velocity</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
     <span class="p">{</span>
@@ -338,16 +338,16 @@ delete the font style for english.
 </pre></div>
 
 
-<p><code>Bjorn</code>现在拥有了一个<code>InputComponent</code>对象。
-之前它在<code>update()</code>方法中直接处理用户输入，现在委托给组件：</p>
+<p><code>Bjorn</code>現在擁有了一個<code>InputComponent</code>對象。
+之前它在<code>update()</code>方法中直接處理用戶輸入，現在委託給組件：</p>
 <div class="codehilite"><pre><span></span><span class="n">input_</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span>
 </pre></div>
 
 
-<p>我们才刚开始，但已经摆脱了一些耦合——<code>Bjorn</code>主体现在已经与<code>Controller</code>无关了。这会派上用场的。</p>
-<h3><a href="#将剩下的分割出来" name="将剩下的分割出来">将剩下的分割出来</a></h3>
-<p>现在让我们对物理和图像代码继续这种剪切粘贴的工作。
-这是我们新的 <code>PhysicsComponent</code>：</p>
+<p>我們才剛開始，但已經擺脫了一些耦合——<code>Bjorn</code>主體現在已經與<code>Controller</code>無關了。這會派上用場的。</p>
+<h3><a href="#將剩下的分割出來" name="將剩下的分割出來">將剩下的分割出來</a></h3>
+<p>現在讓我們對物理和圖像代碼繼續這種剪切粘貼的工作。
+這是我們新的 <code>PhysicsComponent</code>：</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">PhysicsComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -364,8 +364,8 @@ delete the font style for english.
 </pre></div>
 
 
-<p>为了将物理<em>行为</em>移出<code>Bjorn</code>类，你可以看到我们也移出了<em>数据</em>：<code>Volume</code>对象已经是组件的一部分了。</p>
-<p>最后，这是现在的渲染代码：</p>
+<p>為了將物理<em>行為</em>移出<code>Bjorn</code>類，你可以看到我們也移出了<em>數據</em>：<code>Volume</code>對象已經是組件的一部分了。</p>
+<p>最後，這是現在的渲染代碼：</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">GraphicsComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -392,7 +392,7 @@ delete the font style for english.
 </pre></div>
 
 
-<p>我们几乎将所有的东西都移出来了，所以面包师还剩下什么？没什么了：</p>
+<p>我們几乎將所有的東西都移出來了，所以麵包師還剩下什麼？沒什麼了：</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Bjorn</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -414,16 +414,16 @@ delete the font style for english.
 </pre></div>
 
 
-<p><code>Bjorn</code>类现在基本上就做两件事：拥有定义它的组件，以及在不同域间分享的数据。
-有两个原因导致位置和速度仍然在<code>Bjorn</code>的核心类中：
-首先，它们是“泛领域”状态——几乎每个组件都需要使用它们，
-所以我们想要提取它出来时，哪个组件<em>应该</em>拥有它们并不明确。</p>
-<p>第二，也是更重要的一点，它给了我们无需让组件耦合就能沟通的简易方法。
-让我们看看能不能利用这一点。</p>
-<h3><a href="#机器人bjrn" name="机器人bjrn">机器人Bj?rn</a></h3>
-<p>到目前为止，我们将行为归入了不同的组件类，但还没将行为<em>抽象</em>出来。
-<code>Bjorn</code>仍知道每个类的具体定义的行为。让我们改变这一点。</p>
-<p>取出处理输入的部件，将其藏在接口之后，将<code>InputComponent</code>变为抽象基类。</p>
+<p><code>Bjorn</code>類現在基本上就做兩件事：擁有定義它的組件，以及在不同域間分享的數據。
+有兩個原因導致位置和速度仍然在<code>Bjorn</code>的核心類中：
+首先，它們是“泛領域”狀態——几乎每個組件都需要使用它們，
+所以我們想要提取它出來時，哪個組件<em>應該</em>擁有它們並不明確。</p>
+<p>第二，也是更重要的一點，它給了我們無需讓組件耦合就能溝通的簡易方法。
+讓我們看看能不能利用這一點。</p>
+<h3><a href="#機器人bjrn" name="機器人bjrn">機器人Bj?rn</a></h3>
+<p>到目前為止，我們將行為歸入了不同的組件類，但還沒將行為<em>抽象</em>出來。
+<code>Bjorn</code>仍知道每個類的具體定義的行為。讓我們改變這一點。</p>
+<p>取出處理輸入的部件，將其藏在介面之後，將<code>InputComponent</code>變為抽象基類。</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">InputComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -433,7 +433,7 @@ delete the font style for english.
 </pre></div>
 
 
-<p>然后，将现有的处理输入的代码取出，放进一个实现接口的类中。</p>
+<p>然後，將現有的處理輸入的代碼取出，放進一個實現介面的類中。</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">PlayerInputComponent</span> <span class="o">:</span> <span class="k">public</span> <span class="n">InputComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -457,7 +457,7 @@ delete the font style for english.
 </pre></div>
 
 
-<p>我们将<code>Bjorn</code>改为只拥有一个指向输入组件的指针，而不是拥有一个内联的实例。</p>
+<p>我們將<code>Bjorn</code>改為只擁有一個指向輸入組件的指針，而不是擁有一個內聯的實例。</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Bjorn</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -483,48 +483,48 @@ delete the font style for english.
 </pre></div>
 
 
-<p>现在当我们实例化<code>Bjorn</code>，我们可以传入输入组件使用，就像下面这样：</p>
+<p>現在當我們實例化<code>Bjorn</code>，我們可以傳入輸入組件使用，就像下面這樣：</p>
 <div class="codehilite"><pre><span></span><span class="n">Bjorn</span><span class="o">*</span> <span class="n">bjorn</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Bjorn</span><span class="p">(</span><span class="k">new</span> <span class="n">PlayerInputComponent</span><span class="p">());</span>
 </pre></div>
 
 
-<p>这个实例可以是任何实现了抽象<code>InputComponent</code>接口的类型。
-我们为此付出了代价——<code>update()</code>现在是虚方法调用了，这会慢一些。这一代价的回报是什么？</p>
-<p>大多数的主机需要游戏支持“演示模式”。
-如果玩家停在主菜单没有做任何事情，游戏就会自动开始运行，直到接入一个玩家。
-这让屏幕上的主菜单看上去更有生机，同时也是销售商店里很好的展示。</p>
-<p>隐藏在输入组件后的类帮我们实现了这点，
-我们已经有了具体的<code>PlayerInputComponent</code>供在玩游戏时使用。
-现在让我们完成另一个：</p>
+<p>這個實例可以是任何實現了抽象<code>InputComponent</code>介面的類型。
+我們為此付出了代價——<code>update()</code>現在是虛方法調用了，這會慢一些。這一代價的回報是什麼？</p>
+<p>大多數的主機需要遊戲支持“演示模式”。
+如果玩家停在主菜單沒有做任何事情，遊戲就會自動開始運行，直到接入一個玩家。
+這讓屏幕上的主菜單看上去更有生機，同時也是銷售商店裡很好的展示。</p>
+<p>隱藏在輸入組件後的類幫我們實現了這點，
+我們已經有了具體的<code>PlayerInputComponent</code>供在玩遊戲時使用。
+現在讓我們完成另一個：</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">DemoInputComponent</span> <span class="o">:</span> <span class="k">public</span> <span class="n">InputComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="n">Bjorn</span><span class="o">&amp;</span> <span class="n">bjorn</span><span class="p">)</span>
   <span class="p">{</span>
-    <span class="c1">// 自动控制Bjorn的AI……</span>
+    <span class="c1">// 自動控制Bjorn的AI……</span>
   <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>
 
 
-<p>当游戏进入演示模式，不像之前演示的那样构造Bj?rn，
-我们将它和一个新组件连接起来：</p>
+<p>當遊戲進入演示模式，不像之前演示的那樣構造Bj?rn，
+我們將它和一個新組件連接起來：</p>
 <div class="codehilite"><pre><span></span><span class="n">Bjorn</span><span class="o">*</span> <span class="n">bjorn</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Bjorn</span><span class="p">(</span><span class="k">new</span> <span class="n">DemoInputComponent</span><span class="p">());</span>
 </pre></div>
 
 
 <p><span name="coffee"></span></p>
-<p>现在，只需要更改组件，我们就有了为演示模式而设计的电脑控制的玩家。
-我们可以重用所有Bj?rn的代码——物理和图像都不知道这里有了变化。
-也许我有些奇怪，但这就是每天能让我从起床的事物。</p>
+<p>現在，只需要更改組件，我們就有了為演示模式而設計的電腦控制的玩家。
+我們可以重用所有Bj?rn的代碼——物理和圖像都不知道這裡有了變化。
+也許我有些奇怪，但這就是每天能讓我從起床的事物。</p>
 <aside name="coffee">
-<p>那个，还有咖啡。热气腾腾的咖啡。</p>
+<p>那個，還有咖啡。熱氣騰騰的咖啡。</p>
 </aside>
-<h3><a href="#删掉bjrn？" name="删掉bjrn？">删掉Bj?rn？</a></h3>
-<p>如果你看看现在的<code>Bj?rn</code>类，你会意识到那里完全没有“Bj?rn”——那只是个组件包。
-事实上，它是个好候选人，能够作为<em>每个</em>游戏中的对象都能继承的“游戏对象”基类。
-我们可以像弗兰肯斯坦一样，通过挑选拼装部件构建任何对象。</p>
-<p>让我们将剩下的两个具体组件——物理和图像——像输入那样藏到接口之后。</p>
+<h3><a href="#刪掉bjrn？" name="刪掉bjrn？">刪掉Bj?rn？</a></h3>
+<p>如果你看看現在的<code>Bj?rn</code>類，你會意識到那裡完全沒有“Bj?rn”——那只是個組件包。
+事實上，它是個好候選人，能夠作為<em>每個</em>遊戲中的對象都能繼承的“遊戲對象”基類。
+我們可以像弗蘭肯斯坦一樣，通過挑選拼裝部件構建任何對象。</p>
+<p>讓我們將剩下的兩個具體組件——物理和圖像——像輸入那樣藏到介面之後。</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">PhysicsComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -542,7 +542,7 @@ delete the font style for english.
 
 
 <p><span name="id"></span></p>
-<p>然后将<code>Bj?rn</code>改为使用这些接口的通用<code>GameObject</code>类。</p>
+<p>然後將<code>Bj?rn</code>改為使用這些介面的通用<code>GameObject</code>類。</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">GameObject</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -573,19 +573,19 @@ delete the font style for english.
 
 
 <aside name="id">
-<p>有些人走的更远。
-不使用包含组件的<code>GameObject</code>，游戏实体只是一个ID，一个数字。
-每个组件都知道它们连接的实体ID，然后管理分离的组件。</p>
-<p>这些<a href="http://en.wikipedia.org/wiki/Entity_component_system">实体组件系统</a>将组件发挥到了极致，让你向实体添加组件而无需通知实体。
-<a href="data-locality.html" class="pattern">数据局部性</a>一章有更多细节。</p>
+<p>有些人走的更遠。
+不使用包含組件的<code>GameObject</code>，遊戲實體只是一個ID，一個數字。
+每個組件都知道它們連接的實體ID，然後管理分離的組件。</p>
+<p>這些<a href="http://en.wikipedia.org/wiki/Entity_component_system">實體組件系統</a>將組件發揮到了極致，讓你向實體添加組件而無需通知實體。
+<a href="data-locality.html" class="pattern">數據局部性</a>一章有更多細節。</p>
 </aside>
-<p>我们现有的具体类被重命名并实现这些接口：</p>
+<p>我們現有的具體類被重命名並實現這些介面：</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">BjornPhysicsComponent</span> <span class="o">:</span> <span class="k">public</span> <span class="n">PhysicsComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="n">GameObject</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">,</span> <span class="n">World</span><span class="o">&amp;</span> <span class="n">world</span><span class="p">)</span>
   <span class="p">{</span>
-    <span class="c1">// 物理代码……</span>
+    <span class="c1">// 物理代碼……</span>
   <span class="p">}</span>
 <span class="p">};</span>
 
@@ -594,13 +594,13 @@ delete the font style for english.
 <span class="k">public</span><span class="o">:</span>
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="n">GameObject</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">,</span> <span class="n">Graphics</span><span class="o">&amp;</span> <span class="n">graphics</span><span class="p">)</span>
   <span class="p">{</span>
-    <span class="c1">// 图形代码……</span>
+    <span class="c1">// 圖形代碼……</span>
   <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>
 
 
-<p>现在我们无需为Bj?rn建立具体类，就能构建拥有所有Bj?rn行为的对象。</p>
+<p>現在我們無需為Bj?rn建立具體類，就能構建擁有所有Bj?rn行為的對象。</p>
 <p><span name="factory"></span></p>
 <div class="codehilite"><pre><span></span><span class="n">GameObject</span><span class="o">*</span> <span class="nf">createBjorn</span><span class="p">()</span>
 <span class="p">{</span>
@@ -612,92 +612,92 @@ delete the font style for english.
 
 
 <aside name="factory">
-<p>这个<code>createBjorn()</code>函数是，当然，经典GoF<a class="gof-pattern" href="http://c2.com/cgi/wiki?FactoryMethod">工厂模式</a>的例子。</p>
+<p>這個<code>createBjorn()</code>函數是，當然，經典GoF<a class="gof-pattern" href="http://c2.com/cgi/wiki?FactoryMethod">工廠模式</a>的例子。</p>
 </aside>
-<p>通过用不同组件实例化<code>GameObject</code>，我们可以构建游戏需要的任何对象。</p>
-<h2><a href="#设计决策" name="设计决策">设计决策</a></h2>
-<p>这章中你最需要回答的设计问题是“我需要什么样的组件？”
-回答取决于你游戏的需求和风格。
-引擎越大越复杂，你就想将组件划分得更细。</p>
-<p>除此之外，还有几个更具体的选项要回答：</p>
-<h3><a href="#对象如何获取组件？" name="对象如何获取组件？">对象如何获取组件？</a></h3>
-<p>一旦将单块对象分割为多个分离的组件，就需要决定谁将它们拼到一起。</p>
+<p>通過用不同組件實例化<code>GameObject</code>，我們可以構建遊戲需要的任何對象。</p>
+<h2><a href="#設計決策" name="設計決策">設計決策</a></h2>
+<p>這章中你最需要回答的設計問題是“我需要什麼樣的組件？”
+回答取決於你遊戲的需求和風格。
+引擎越大越複雜，你就想將組件劃分得更細。</p>
+<p>除此之外，還有幾個更具體的選項要回答：</p>
+<h3><a href="#對象如何獲取組件？" name="對象如何獲取組件？">對象如何獲取組件？</a></h3>
+<p>一旦將單塊對象分割為多個分離的組件，就需要決定誰將它們拼到一起。</p>
 <ul>
 <li>
-<p><strong>如果对象创建组件：</strong></p>
+<p><strong>如果對象創建組件：</strong></p>
 <ul>
 <li>
-<p><em>这保证了对象总是能拿到需要的组件。</em>
-你永远不必担心某人忘记连接正确的组件然后破坏了整个游戏。容器类自己会处理这个问题。</p>
+<p><em>這保證了對象總是能拿到需要的組件。</em>
+你永遠不必擔心某人忘記連接正確的組件然後破壞了整個遊戲。容器類自己會處理這個問題。</p>
 </li>
 <li>
-<p><em>重新设置对象比较困难。</em>
-这个模式的强力特性之一就是只需重新组合组件就可以创建新的对象。
-如果对象总是用硬编码的组件组装自己，我们就无法利用这个特性。</p>
+<p><em>重新設置對象比較困難。</em>
+這個模式的強力特性之一就是隻需重新組合組件就可以創建新的對象。
+如果對象總是用硬編碼的組件組裝自己，我們就無法利用這個特性。</p>
 </li>
 </ul>
 </li>
 <li>
-<p><strong>如果外部代码提供组件：</strong></p>
+<p><strong>如果外部代碼提供組件：</strong></p>
 <ul>
 <li>
-<p><em>对象更加灵活。</em>
- 我们可以提供不同的组件，这样就能改变对象的行为。
- 通过共用组件，对象变成了组件容器，我们可以为不同目的一遍又一遍重用它。</p>
+<p><em>對象更加靈活。</em>
+ 我們可以提供不同的組件，這樣就能改變對象的行為。
+ 通過共用組件，對象變成了組件容器，我們可以為不同目的一遍又一遍重用它。</p>
 </li>
 <li>
-<p><em>对象可以与具体的组件类型解耦。</em>
-如果我们允许外部代码提供组件，好处是也可以传递<em>派生</em>的组件类型。
-这样，对象只知道组件<em>接口</em>而不知道组件的具体类型。这是一个很好的封装结构。</p>
+<p><em>對象可以與具體的組件類型解耦。</em>
+如果我們允許外部代碼提供組件，好處是也可以傳遞<em>派生</em>的組件類型。
+這樣，對象只知道組件<em>介面</em>而不知道組件的具體類型。這是一個很好的封裝結構。</p>
 </li>
 </ul>
 </li>
 </ul>
-<h3><a href="#组件之间如何通信？" name="组件之间如何通信？">组件之间如何通信？</a></h3>
-<p>完美解耦的组件不需要考虑这个问题，但在真正的实践中行不通。
-事实上组件属于<em>同一</em>对象暗示它们属于需要相互协同的更大整体的一部分。
-这就意味着通信。</p>
-<p>所以组件如何相互通信呢？
-这里有很多选项，但不像这本书中其他的“选项”，它们相互并不冲突——你可以在一个设计中支持多种方案。</p>
+<h3><a href="#組件之間如何通信？" name="組件之間如何通信？">組件之間如何通信？</a></h3>
+<p>完美解耦的組件不需要考慮這個問題，但在真正的實踐中行不通。
+事實上組件屬於<em>同一</em>對象暗示它們屬於需要相互協同的更大整體的一部分。
+這就意味著通信。</p>
+<p>所以組件如何相互通信呢？
+這裡有很多選項，但不像這本書中其他的“選項”，它們相互並不衝突——你可以在一個設計中支持多種方案。</p>
 <ul>
 <li>
-<p><em>通过修改容器对象的状态：</em></p>
+<p><em>通過修改容器對象的狀態：</em></p>
 <ul>
 <li>
-<p><em>这保持组件解耦。</em>
-当我们的<code>InputComponent</code>设置了Bj?rn的速度，而后<code>PhysicsComponent</code>使用它，
-这两个组件都不知道对方的存在。在它们的理解中，Bj?rn的速度是被黑魔法改变的。</p>
+<p><em>這保持組件解耦。</em>
+當我們的<code>InputComponent</code>設置了Bj?rn的速度，而後<code>PhysicsComponent</code>使用它，
+這兩個組件都不知道對方的存在。在它們的理解中，Bj?rn的速度是被黑魔法改變的。</p>
 </li>
 <li>
-<p><em>需要将组件分享的任何数据存储在容器类中。</em>
-通常状态只在几个组件间共享。比如，动画组件和渲染组件需要共享图形专用的信息。
-将信息存入容器类会让<em>所有</em>组件都获得这样的信息。</p>
-<p>更糟的是，如果我们为不同组件配置使用相同的容器类，最终会浪费内存存储不被<em>任何</em>对象组件需要的状态。
-如果我们将渲染专用的数据放入容器对象中，任何隐形对象都会无益的消耗内存。</p>
+<p><em>需要將組件分享的任何數據存儲在容器類中。</em>
+通常狀態只在幾個組件間共享。比如，動畫組件和渲染組件需要共享圖形專用的信息。
+將信息存入容器類會讓<em>所有</em>組件都獲得這樣的信息。</p>
+<p>更糟的是，如果我們為不同組件配置使用相同的容器類，最終會浪費內存存儲不被<em>任何</em>對象組件需要的狀態。
+如果我們將渲染專用的數據放入容器對象中，任何隱形對象都會無益的消耗內存。</p>
 </li>
 <li>
-<p><em>这让组件的通信基于组件运行的顺序。</em>
-在同样的代码中，原先一整块的<code>update()</code>代码小心地排列这些操作。
-玩家的输入修改了速度，速度被物理代码使用并修改位置，位置被渲染代码使用将Bj?rn绘到该有的地方。
-当我们将这些代码划入组件时，还是得小心翼翼的保持这种操作顺序。</p>
+<p><em>這讓組件的通信基于組件運行的順序。</em>
+在同樣的代碼中，原先一整塊的<code>update()</code>代碼小心地排列這些操作。
+玩家的輸入修改了速度，速度被物理代碼使用並修改位置，位置被渲染代碼使用將Bj?rn繪到該有的地方。
+當我們將這些代碼劃入組件時，還是得小心翼翼的保持這種操作順序。</p>
 <p><span name="pure"></span></p>
-<p>如果我们不那么做，就引入了 微妙而难以追踪的漏洞。
-比如，我们<em>先</em>更新图形组件，就错误地将Bj?rn渲染在他<em>上一帧</em>而不是这一帧所处的位置上。
-如果你考虑更多的组件和更多的代码，那你可以想象要避免这样的错误有多么困难了。</p>
+<p>如果我們不那麼做，就引入了 微妙而難以追蹤的漏洞。
+比如，我們<em>先</em>更新圖形組件，就錯誤地將Bj?rn渲染在他<em>上一幀</em>而不是這一幀所處的位置上。
+如果你考慮更多的組件和更多的代碼，那你可以想象要避免這樣的錯誤有多麼困難了。</p>
 <aside name="pure">
 
-<p>大量这样共享状态的代码很难正确完成读写的相同数据。
-这就是为什么学术界花时间研究完全函数式语言，比如Haskell，那里根本没有可变状态。</p>
+<p>大量這樣共享狀態的代碼很難正確完成讀寫的相同數據。
+這就是為什麼學術界花時間研究完全函數式語言，比如Haskell，那里根本沒有可變狀態。</p>
 </aside>
 
 </li>
 </ul>
 </li>
 <li>
-<p><em>通过它们之间相互引用：</em></p>
-<p>这里的思路是组件有要交流的组件的引用，这样它们直接交流，无需通过容器类。</p>
-<p>假设我们想让Bj?rn跳跃。图形代码想知道它需要用跳跃图像还是不用。
-这可以通过询问物理引擎它当前是否在地上来确定。一种简单的方式是图形组件直接知道物理组件的存在：</p>
+<p><em>通過它們之間相互引用：</em></p>
+<p>這裡的思路是組件有要交流的組件的引用，這樣它們直接交流，無需通過容器類。</p>
+<p>假設我們想讓Bj?rn跳躍。圖形代碼想知道它需要用跳躍圖像還是不用。
+這可以通過詢問物理引擎它當前是否在地上來確定。一種簡單的方式是圖形組件直接知道物理組件的存在：</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">BjornGraphicsComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -714,7 +714,7 @@ delete the font style for english.
     <span class="p">}</span>
     <span class="k">else</span>
     <span class="p">{</span>
-      <span class="c1">// 现存的图形代码……</span>
+      <span class="c1">// 現存的圖形代碼……</span>
     <span class="p">}</span>
 
     <span class="n">graphics</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="o">*</span><span class="n">sprite</span><span class="p">,</span> <span class="n">obj</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">obj</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
@@ -731,25 +731,25 @@ delete the font style for english.
 </pre></div>
 
 
-<p>当构建Bj?rn的<code>GraphicsComponent</code>时，我们给它相应的<code>PhysicsComponent</code>引用。</p>
+<p>當構建Bj?rn的<code>GraphicsComponent</code>時，我們給它相應的<code>PhysicsComponent</code>引用。</p>
 <ul>
 <li>
-<p><em>简单快捷。</em>
-通信是一个对象到另一个的直接方法调用。组件可以调用任一引用对象的方法。做什么都可以。</p>
+<p><em>簡單快捷。</em>
+通信是一個對象到另一個的直接方法調用。組件可以調用任一引用對象的方法。做什麼都可以。</p>
 </li>
 <li>
-<p><em>两个组件紧绑在一起。</em>
-这是什么都可以的坏处。我们向使用整块类又退回了一步。
-这比只用单一类好一点，至少我们现在只是把需要通信的类绑在一起。</p>
+<p><em>兩個組件緊綁在一起。</em>
+這是什麼都可以的壞處。我們向使用整塊類又退回了一步。
+這比只用單一類好一點，至少我們現在只是把需要通信的類綁在一起。</p>
 </li>
 </ul>
 </li>
 <li>
-<p><em>通过发送消息：</em></p>
+<p><em>通過發送消息：</em></p>
 <ul>
 <li>
-<p>这是最复杂的选项。我们可以在容器类中建小小的消息系统，允许组件相互发送消息。</p>
-<p>下面是一种可能的实现。我们从每个组件都会实现的<code>Component</code>接口开始：</p>
+<p>這是最複雜的選項。我們可以在容器類中建小小的消息系統，允許組件相互發送消息。</p>
+<p>下面是一種可能的實現。我們從每個組件都會實現的<code>Component</code>介面開始：</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Component</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -759,9 +759,9 @@ delete the font style for english.
 </pre></div>
 
 
-<p>它有一个简单的<code>receive()</code>方法，每个需要接受消息的组件类都要实现它。
-这里，我们使用一个<code>int</code>来定义消息，但更完整的消息实现应该可以附加数据。</p>
-<p>然后，向容器类添加发送消息的方法。</p>
+<p>它有一個簡單的<code>receive()</code>方法，每個需要接受消息的組件類都要實現它。
+這裡，我們使用一個<code>int</code>來定義消息，但更完整的消息實現應該可以附加數據。</p>
+<p>然後，向容器類添加發送消息的方法。</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">ContainerObject</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -784,12 +784,12 @@ delete the font style for english.
 
 
 <p><span name="queue"></span></p>
-<p>现在，如果组件能够接触容器，它就能向容器发送消息，直接向所有的组件广播。
-（包括了原先发送消息的组件，小心别陷入消息的无限循环中！）这会造成一些结果：</p>
+<p>現在，如果組件能夠接觸容器，它就能向容器發送消息，直接向所有的組件廣播。
+（包括了原先發送消息的組件，小心別陷入消息的無限循環中！）這會造成一些結果：</p>
 <aside name="queue">
 
-<p>如果你真的乐意，甚至可以将消息存储在<em>队列</em>中，晚些发送。
-要知道更多，看看<a href="event-queue.html" class="pattern">事件队列</a>。</p>
+<p>如果你真的樂意，甚至可以將消息存儲在<em>隊列</em>中，晚些發送。
+要知道更多，看看<a href="event-queue.html" class="pattern">事件隊列</a>。</p>
 </aside>
 
 </li>
@@ -797,57 +797,57 @@ delete the font style for english.
 <p><span name="mediator"></span></p>
 <ul>
 <li>
-<p><em>同级组件解耦。</em>
-通过父级容器对象，就像共享状态的方案一样，我们保证了组件之间仍然是解耦的。
-使用了这套系统，组件之间唯一的耦合是它们发送的消息。</p>
+<p><em>同級組件解耦。</em>
+通過父級容器對象，就像共享狀態的方案一樣，我們保證了組件之間仍然是解耦的。
+使用了這套系統，組件之間唯一的耦合是它們發送的消息。</p>
 <aside name="mediator">
 
-<p>GoF称之为<a class="gof-pattern" href="http://c2.com/cgi-bin/wiki?MediatorPattern">中介</a>模式——两个或更多的对象通过中介对象通信。
-现在这种情况下，容器对象本身就是中介。</p>
+<p>GoF稱之為<a class="gof-pattern" href="http://c2.com/cgi-bin/wiki?MediatorPattern">中介</a>模式——兩個或更多的對象通過中介對象通信。
+現在這種情況下，容器對象本身就是中介。</p>
 </aside>
 
 </li>
 <li>
-<p><em>容器类很简单。</em>
- 不像使用共享状态那样，容器类无需知道组件使用了什么数据，它只是将消息发送出去。
- 这可以让组件发送领域特有的数据而无需打扰容器对象。</p>
+<p><em>容器類很簡單。</em>
+ 不像使用共享狀態那樣，容器類無需知道組件使用了什麼數據，它只是將消息發送出去。
+ 這可以讓組件發送領域特有的數據而無需打擾容器對象。</p>
 </li>
 </ul>
 </li>
 </ul>
-<p>不出意料的，这里没有最好的答案。这些方法你最终可能都会使用一些。
-共享状态对于每个对象都有的数据是很好用的——比如位置和大小。</p>
-<p>有些不同领域仍然紧密相关。想想动画和渲染，输入和AI，或物理和粒子。
-如果你有这样一对分离的组件，你会发现直接相互引用也许更加容易。</p>
-<p>消息对于“不那么重要”的通信很有用。
-发送后不管的特性对物理组件发现事物碰撞后发送消息，让音乐组件播放声音这种事情是很有效的。</p>
-<p>就像以前一样，我建议你从简单的开始，然后如果需要的话，加入其他的通信路径。</p>
+<p>不出意料的，這裡沒有最好的答案。這些方法你最終可能都會使用一些。
+共享狀態對於每個對象都有的數據是很好用的——比如位置和大小。</p>
+<p>有些不同領域仍然緊密相關。想想動畫和渲染，輸入和AI，或物理和粒子。
+如果你有這樣一對分離的組件，你會發現直接相互引用也許更加容易。</p>
+<p>消息對於“不那麼重要”的通信很有用。
+發送後不管的特性對物理組件發現事物碰撞後發送消息，讓音樂組件播放聲音這種事情是很有效的。</p>
+<p>就像以前一樣，我建議你從簡單的開始，然後如果需要的話，加入其他的通信路徑。</p>
 <h2><a href="#see-also" name="see-also">See Also</a></h2>
-<h2><a href="#参见" name="参见">参见</a></h2>
+<h2><a href="#參見" name="參見">參見</a></h2>
 <ul>
 <li>
-<p><a href="http://unity3d.com">Unity</a>核心架构中<a href="http://docs.unity3d.com/Documentation/Manual/GameObjects.html"><code>GameObject</code></a>类完全根据这样的原则设计<a href="http://docs.unity3d.com/Manual/UsingComponents.html">components</a>。</p>
+<p><a href="http://unity3d.com">Unity</a>核心架構中<a href="http://docs.unity3d.com/Documentation/Manual/GameObjects.html"><code>GameObject</code></a>類完全根據這樣的原則設計<a href="http://docs.unity3d.com/Manual/UsingComponents.html">components</a>。</p>
 </li>
 <li>
-<p>开源的<a href="http://www.delta3d.org">Delta3D</a>引擎有<code>GameActor</code>基类通过<code>ActorComponent</code>实现了这种模式。</p>
+<p>開源的<a href="http://www.delta3d.org">Delta3D</a>引擎有<code>GameActor</code>基類通過<code>ActorComponent</code>實現了這種模式。</p>
 </li>
 <li>
-<p>微软的<a href="http://creators.xna.com/en-US/">XNA</a>游戏框架有一个核心的<code>Game</code>类。它拥有一系列<code>GameComponent</code>对象。我们在游戏实体层使用组件，XNA在游戏主对象上实现了这种模式，但意图是一样的。</p>
+<p>微軟的<a href="http://creators.xna.com/en-US/">XNA</a>遊戲框架有一個核心的<code>Game</code>類。它擁有一系列<code>GameComponent</code>對象。我們在遊戲實體層使用組件，XNA在遊戲主對象上實現了這種模式，但意圖是一樣的。</p>
 </li>
 <li>
-<p>这种模式与GoF的<a class="gof-pattern" href="http://c2.com/cgi-bin/wiki?StrategyPattern">策略模式</a>类似。
-两种模式都是将对象的行为取出，划入单独的重述对象。
-与对象模式不同的是，分离的策略模式通常是无状态的——它封装了算法，而没有数据。
-它定义了对象<em>如何</em>行动，但没有定义对象<em>是</em>什么。</p>
-<p>组件更加重要。它们经常保存了对象的状态，这有助于确定其真正的身份。
-但是，这条界限很模糊。有一些组件也许根本没有任何状态。
-在这种情况下，你可以在不同的容器对象中使用相同的组件<em>实例</em>。这样看来，它的行为确实更像一种策略。</p>
+<p>這種模式與GoF的<a class="gof-pattern" href="http://c2.com/cgi-bin/wiki?StrategyPattern">策略模式</a>類似。
+兩種模式都是將對象的行為取出，劃入單獨的重述對象。
+與對象模式不同的是，分離的策略模式通常是無狀態的——它封裝了算法，而沒有數據。
+它定義了對象<em>如何</em>行動，但沒有定義對象<em>是</em>什麼。</p>
+<p>組件更加重要。它們經常保存了對象的狀態，這有助于確定其真正的身份。
+但是，這條界限很模糊。有一些組件也許根本沒有任何狀態。
+在這種情況下，你可以在不同的容器對象中使用相同的組件<em>實例</em>。這樣看來，它的行為確實更像一種策略。</p>
 </li>
 </ul>
 <nav>
   <span class="prev">&larr; <a href="decoupling-patterns.html">上一章</a></span>
   <span class="next"><a href="event-queue.html">下一章</a> &rarr;</span>
-  <span class="toc">&equiv; <a href="/">首页</a></span>
+  <span class="toc">&equiv; <a href="/">首頁</a></span>
 </nav>
 </div>
 </div>

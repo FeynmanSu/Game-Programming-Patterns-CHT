@@ -27,33 +27,33 @@ PINK = '\033[91m'
 YELLOW = '\033[33m'
 
 CHAPTERS = [
-  "致谢",
+  "致謝",
   "序",
-  "架构，性能和游戏",
-  "重访设计模式",
+  "架構，性能和遊戲",
+  "重訪設計模式",
   "命令模式",
   "享元模式",
-  "观察者模式",
+  "觀察者模式",
   "原型模式",
-  "单例模式",
-  "状态模式",
+  "單例模式",
+  "狀態模式",
   "序列模式",
-  "双缓冲模式",
-  "游戏循环",
+  "雙緩衝模式",
+  "遊戲循環",
   "更新方法",
-  "行为模式",
-  "字节码",
-  "子类沙箱",
-  "类型对象",
+  "行為模式",
+  "位元組碼",
+  "子類沙箱",
+  "類型對象",
   "解耦模式",
-  "组件模式",
-  "事件队列",
-  "服务定位器",
-  "优化模式",
-  "数据局部性",
-  "脏标识模式",
-  "对象池模式",
-  "空间分区"
+  "組件模式",
+  "事件隊列",
+  "服務定位器",
+  "優化模式",
+  "數據局部性",
+  "臟標識模式",
+  "對象池模式",
+  "空間分區"
 ]
 
 CHAPTERS_HTML = [
@@ -464,7 +464,7 @@ def include_code(pattern, index, indentation):
 
 def buildnav(searchpath):
   nav = '<div class="nav">\n'
-  nav = nav + '<h1><a href="/">目录</a></h1>\n'
+  nav = nav + '<h1><a href="/">目錄</a></h1>\n'
 
   # Read the chapter outline from the index page.
   with open('html/index.html', 'r') as source:
@@ -522,7 +522,7 @@ else:
     file_filter = sys.argv[1]
 
   format_files(file_filter, False)
-"""对中文统计失效。
+"""對中文統計失效。
   average_word_count = total_words / (num_chapters - empty_chapters)
   estimated_word_count = total_words + (empty_chapters * average_word_count)
   percent_finished = total_words * 100 / estimated_word_count

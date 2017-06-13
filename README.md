@@ -1,24 +1,24 @@
-# [游戏编程模式中文版](http://tkchu.github.io/Game-Programming-Patterns-CN/)
-###### 点击上面标题在线阅读
+# [遊戲編程模式中文版](http://feynmansu.github.io/Game-Programming-Patterns-CN/)
+###### 點擊上面標題在線閱讀
 
-《游戏编程模式》是由曾在EA工作八年的Bob Nystrom写就，讲述在游戏开发中各种常见的编程模式。
-通过阅读此书，可以更好的理解设计模式和工程化开发。
+《遊戲編程模式》是由曾在EA工作八年的Bob Nystrom寫就，講述在遊戲開發中各種常見的編程模式。
+通過閱讀此書，可以更好的理解設計模式和工程化開發。
 
-英文版在线阅读：[Game Programming Patterns](http://gameprogrammingpatterns.com/)
+英文版在線閱讀：[Game Programming Patterns](http://gameprogrammingpatterns.com/)
 
-Bob Nystrom同时在Github上无私地提供原本：[munificent/game-programming-patterns](https://github.com/munificent/game-programming-patterns)。
+Bob Nystrom同時在Github上無私地提供原本：[munificent/game-programming-patterns](https://github.com/munificent/game-programming-patterns)。
 
-如果有任何表意不明或者疏忽遗漏，欢迎提出Issues，谢谢您的贡献，让我们的世界变得更好。
+如果有任何表意不明或者疏忽遺漏，歡迎提出Issues，謝謝您的貢獻，讓我們的世界變得更好。
 
-## 进度
+## 進度
 
-1. 第一轮作业（完成）：将整书翻译一遍，翻译质量预期略高于谷歌机翻。
-2. 第二轮作业（完成）：修复漏洞，翻译所有的旁注并添加链接，同时平滑语言。
-3. 第三轮作业（完成）：校订，修改图片为中文，将alt也改为中文。
-4. 第四轮作业（完成）：修改代码注释为中文。
-5. 第五轮作业：优化访问速度和显示效果。
-    - 通过使用百度CDN提供jquery（完成）。
-    - 删除google analysis代码（完成）。
-    - 删除英文特殊字体（完成）。
-    - 压缩图片（完成）。
-    - 使用更适合中文的CSS设置（完成）。
+1. 第一輪作業（完成）：將整書翻譯一遍，翻譯質量預期略高於谷歌機翻。
+2. 第二輪作業（完成）：修復漏洞，翻譯所有的旁註並添加連結，同時平滑語言。
+3. 第三輪作業（完成）：校訂，修改圖片為中文，將alt也改為中文。
+4. 第四輪作業（完成）：修改代碼註釋為中文。
+5. 第五輪作業：優化訪問速度和顯示效果。
+    - 通過使用百度CDN提供jquery（完成）。
+    - 刪除google analysis代碼（完成）。
+    - 刪除英文特殊字型（完成）。
+    - 壓縮圖片（完成）。
+    - 使用更適合中文的CSS設置（完成）。
